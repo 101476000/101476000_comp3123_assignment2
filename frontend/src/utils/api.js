@@ -1,10 +1,10 @@
 import axios from 'axios';
 
+// Cambia la configuración base para usar variable de entorno
 const API = axios.create({
-    baseURL: 'http://localhost:5000/api/v1', 
+    baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000/api/v1', 
 });
 
-// Add Authorization Header for protected routes
 API.interceptors.request.use((req) => {
     const token = localStorage.getItem('token');
     if (token) {
